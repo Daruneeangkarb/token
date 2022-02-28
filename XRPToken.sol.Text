@@ -3,12 +3,17 @@ pragma solidity ^0.4.24;
 // ----------------------------------------------------------------------------
 // Sample token contract
 //
-// Symbol        : {{XRP}} //{{ใส่ชื่อเหรียญ}}
-// Name          : {{XRP Token}} //{{ใส่ชื่อเหรียญ Token}}
-// Total supply  : {{1000000}} //{{ใส่จำนวนเหรียญตามต้องการ }}
-// Decimals      : {{4}}  //{{ใส่ตำแหน่งทศนิยมตามต้องการเหรียญ }}
+/*{{ใส่ชื่อเหรียญ}}*/
+// Symbol        : {{XRP}} 
+/*{{ใส่ชื่อเหรียญ Token}}*/
+// Name          : {{XRP Token}}
+ /*{{ใส่จำนวนเหรียญตามต้องการ }}*/
+// Total supply  : {{1000000}} 
+/*{{ใส่ตำแหน่งทศนิยมตามต้องการเหรียญ }}*/
+// Decimals      : {{4}}  
+/*{{ใส่หมายเลขบัญชี (กระเป๋า meta mash bitkub }}*/
 // Owner Account : {{0x644a61Bfa9951eE69eb5018eD52427989CE4c1B5}}
-//{{ใส่หมายเลขบัญชี (กระเป๋า meta mash bitkub }}
+
 // Enjoy.
 //
 // (c) by Juan Cruz Martinez 2020. MIT Licence.
@@ -84,13 +89,13 @@ contract XRPToken is ERC20Interface, SafeMath {
     // Constructor
     // ------------------------------------------------------------------------
     constructor() public {
-        symbol = "XRP"; //{{ใส่ชื่อเหรียญ}}
-        name = "XRP Token";  //{{ใส่ชื่อเหรียญ Token}}
-        decimals = 4;  //{{ใส่ตำแหน่งทศนิยมตามต้องการเหรียญ }}
-        _totalSupply = 1000000; //{{ใส่จำนวนเหรียญตามต้องการ }}
+        symbol = "XRP"; /*{{ใส่ชื่อเหรียญ}}*/
+        name = "XRP Token";  /*{{ใส่ชื่อเหรียญ Token}}*/
+        decimals = 4;  /*{{ใส่ตำแหน่งทศนิยมตามต้องการเหรียญ }}*/
+        _totalSupply = 1000000; /*{{ใส่จำนวนเหรียญตามต้องการ }}*/
         balances[0x644a61Bfa9951eE69eb5018eD52427989CE4c1B5] = _totalSupply;
         emit Transfer(address(0), 0x644a61Bfa9951eE69eb5018eD52427989CE4c1B5, _totalSupply);
-    }//{{ใส่หมายเลขบัญชี (กระเป๋า meta mash bitkub }}โอนย้ายจากที่หนึ่งไปยังที่หนึ่ง
+    }/*{{ใส่หมายเลขบัญชี (กระเป๋า meta mash bitkub }}โอนย้ายจากที่หนึ่งไปยังที่หนึ่ง*/
 
 
     // ------------------------------------------------------------------------
@@ -120,6 +125,7 @@ contract XRPToken is ERC20Interface, SafeMath {
         emit Transfer(msg.sender, to, tokens);
         return true;
     }
+    /**/
 
 
     // ------------------------------------------------------------------------
