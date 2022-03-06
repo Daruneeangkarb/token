@@ -23,6 +23,7 @@ pragma solidity ^0.4.24;
 // ----------------------------------------------------------------------------
 // Lib: Safe Math
 // ----------------------------------------------------------------------------
+/* ความปลอดภัยคณิตศาสตร์ */
 contract SafeMath {
 
     function safeAdd(uint a, uint b) public pure returns (uint c) {
@@ -62,7 +63,16 @@ contract ERC20Interface {
     event Transfer(address indexed from, address indexed to, uint tokens);
     event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
 }
-
+/*
+สัญญา ERC20Interface { ฟังก์ชัน totalSupply ()สาธารณะดูผลตอบแทน (uint); 
+ฟังก์ชัน balanceOf (address tokenOwner)สาธารณะดูผลตอบแทน (ยอดคงเหลือ uint);
+ค่าเผื่อฟังก์ชัน(address tokenOwner, address spender)สาธารณะดูผลตอบแทน (uint ที่เหลือ); 
+การถ่ายโอนฟังก์ชัน (ที่อยู่ไปยังโทเค็น uint) สาธารณะผลตอบแทน (ความสำเร็จบูล); 
+ฟังก์ชั่นอนุมัติ (ผู้ใช้ที่อยู่โทเค็น uint) สาธารณะผลตอบแทน (ความสำเร็จบูล); 
+ฟังก์ชั่นการถ่ายโอนจาก(ที่อยู่จากที่อยู่ไปยังโทเค็น uint) สาธารณะผลตอบแทน (ความสำเร็จบูล); 
+การถ่ายโอนเหตุการณ์ (ที่อยู่ที่จัดทำดัชนีจากที่อยู่ที่ทำดัชนีไปยังโทเค็น uint); 
+การอนุมัติเหตุการณ์ (ที่อยู่ที่จัดทำดัชนี tokenOwner, ที่อยู่ผู้ใช้จ่ายที่จัดทำดัชนี, โทเค็น uint); }
+*/
 
 /**
 Contract function to receive approval and execute function in one call
@@ -83,7 +93,15 @@ contract XRPToken is ERC20Interface, SafeMath {
 
     mapping(address => uint) balances;
     mapping(address => mapping(address => uint)) allowed;
-
+/*
+XRPToken สัญญาคือ ERC20Interface, SafeMath { 
+    สัญลักษณ์สาธารณะสตริง; 
+    สตริงสาธารณะชื่อ; 
+ uint8 ทศนิยมสาธารณะ;
+ uint สาธารณะ _totalSupply; 
+ การทำแผนที่ (ที่อยู่ => uint) ยอดคงเหลือ; 
+การทำแผนที่ (ที่อยู่ => การทำแผนที่ (ที่อยู่ => uint)) อนุญาต;
+*/
 
     // ------------------------------------------------------------------------
     // Constructor
@@ -104,7 +122,10 @@ contract XRPToken is ERC20Interface, SafeMath {
     function totalSupply() public constant returns (uint) {
         return _totalSupply  - balances[address(0)];
     }
-
+    /*
+    ฟังก์ชัน totalSupply () ผลตอบแทนมุมมองสาธารณะ (uint) { 
+    ส่งคืน _totalSupply – ยอดคงเหลือ [ที่อยู่ (0)]; }
+    */
 
     // ------------------------------------------------------------------------
     // Get the token balance for account tokenOwner
@@ -125,7 +146,12 @@ contract XRPToken is ERC20Interface, SafeMath {
         emit Transfer(msg.sender, to, tokens);
         return true;
     }
-    /**/
+    /*
+    การถ่ายโอนฟังก์ชัน (ที่อยู่ไปยังโทเค็น uint)สาธารณะผลตอบแทน (ความสำเร็จบูล){ 
+        ยอดคงเหลือ [msg.sender] = safeSub (ยอดคงเหลือ [msg.sender], โทเค็น);
+        ยอดคงเหลือ [ถึง] = safeAdd (ยอดคงเหลือ [ถึง], โทเค็น); 
+        ปล่อยโอน (msg.sender, to, tokens); กลับจริง; }
+    */
 
 
     // ------------------------------------------------------------------------
@@ -141,7 +167,13 @@ contract XRPToken is ERC20Interface, SafeMath {
         emit Approval(msg.sender, spender, tokens);
         return true;
     }
-
+    /*
+    ฟังก์ชั่นอนุมัติ (ผู้ใช้ที่อยู่โทเค็น uint) ผลตอบแทนสาธารณะ (ความสำเร็จบูล) { 
+        อนุญาต [msg.sender] [spender] = โทเค็น; 
+        ปล่อยการอนุมัติ (msg.sender, spender, tokens); 
+        กลับจริง; }
+    
+    */
 
     // ------------------------------------------------------------------------
     // Transfer tokens from the from account to the to account
@@ -159,7 +191,14 @@ contract XRPToken is ERC20Interface, SafeMath {
         emit Transfer(from, to, tokens);
         return true;
     }
-
+    /*
+    function transferFrom (address from, address to, uint tokens) public return (bool success) { 
+        ยอดคงเหลือ [จาก] = safeSub (ยอดคงเหลือ [จาก], โทเค็น); 
+        อนุญาต [จาก] [msg.sender] = safeSub (อนุญาต [จาก] [msg.sender], โทเค็น); 
+        ยอดคงเหลือ [ถึง] = safeAdd (ยอดคงเหลือ [ถึง], โทเค็น);
+        ส่งการโอน (จากถึงโทเค็น); 
+        กลับจริง; }
+    */
 
     // ------------------------------------------------------------------------
     // Returns the amount of tokens approved by the owner that can be
